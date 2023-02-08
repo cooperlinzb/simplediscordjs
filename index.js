@@ -1,16 +1,19 @@
 const Discord = require('discord.js');
-const config = require('./config');
-
 const client = new Discord.Client();
 
-client.on('ready', () => {
-  console.log(`Logged in as ${client.user.tag}!`);
-});
+const symbol = '!';
 
-client.on('message', msg => {
-  if (msg.content === 'ping') {
-    msg.reply('Pong!');
+client.on('message', message => {
+  if (!message.content.startsWith(symbol) || message.author.bot) return;
+
+  const args = message.content.slice(symbol.length).split(/ +/);
+  const command = args.shift().toLowerCase();
+
+  if (command === 'ping') {
+    message.channel.send('Pong!');
+  } else if (command === 'beep') {
+    message.channel.send('Boop!');
   }
 });
 
-client.login(config.DISCORD_BOT_TOKEN);
+client.login('your_token_here');
