@@ -1,7 +1,7 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
 
-const symbol = '!';
+const symbol = '-';
 
 client.on('message', message => {
   if (!message.content.startsWith(symbol) || message.author.bot) return;
